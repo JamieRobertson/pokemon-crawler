@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <title>{% block title %}{% endblock %}Pokémon Wiki</title>
+    <meta name="description" content="{% block description %}Your new favourite Pokémon site{% endblock %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="{% block extra_body_classes %}{% endblock extra_body_classes %}">
+
+<a class="skippy sr-only sr-only-focusable" href="#content">
+    <span class="skippy-text">Skip to main content</span>
+</a>
+
+{% block header %}{% endblock header %}
+
+<main role="main" id="content">
+    {% block content %}{% endblock content %}
+</main>
+
+</body>
+</html>
