@@ -22,7 +22,7 @@
                 {% if object_list and is_paginated %}
 
                     <div class="pagination">
-                        <span class="step-links">
+                        <span class="step-links d-block mx-auto">
                             {% if page_obj.has_previous %}
                                 <a href="?page=1">&laquo; first</a>
                                 <a href="?page={{ page_obj.previous_page_number }}">previous</a>

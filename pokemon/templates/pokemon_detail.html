@@ -1,31 +1,49 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ object.name }} | {{ block.super }}{% endblock title %}
+{% block title %}{{ object.name|title }} | {{ block.super }}{% endblock title %}
 
 {% block content %}
     <div class="container py-4">
-        {% if object.featured_thumbnail %}
-        {% endif %}
+        <div class="py-2 w-100">
+            <p class="small mb-0"><a href="{% url 'pokemon:list' %}">Home</a></p>
+        </div>
+        {% for sprite in object.sprites.all %}
+            {% if sprite.name == 'official_artwork' %}
+                <img src="{{ sprite.url }}" alt="{{ object.name|title }} - {{ sprite.name }}" class="img-fluid mb-2 mx-auto d-block">
+            {% endif %}
+        {% endfor %}
 
-        <div class="row">
-            <div class="col-12">
-                <h1 class="display-2 font-weight-bold">
+        <div class="row justify-content-center">
+            <div class="col-12 mb-2">
+                <h1 class="display-2 font-weight-bold text-center">
                     {{ object.name|title }}
                 </h1>
                 {% if object.description %}
-                    <p>{{ object.description }}</p>
+                    <p class="text-center">{{ object.description }}</p>
                 {% endif %}
             </div>
             <div class="col-md-8">
+                <h4>Stats:</h4>
+                <ul class="list-unstyled pt-2">
+                    {% for pokemonstat in object.pokemonstat_set.all %}
+                        <li>
+                            <div class="d-flex justify-content-between">
+                                <span><a href="{{ pokemonstat.stat.url }}" target="_blank" class="text-reset">{{ pokemonstat.stat.name_pretty|title }}</a>:</span>
+                                <span><b>{{ pokemonstat.base_stat }}</b></span>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <li>No statistics could be found for this Pokémon.</li>
+                    {% endfor %}
+                </ul>
                 <h4>Moves:</h4>
                 <ul class="list-inline pt-2">
                     {% for move in object.moves.all %}
-                        <li class="list-inline-item"><a href="{{ move.url }}" class="btn btn-sm btn-outline-info mb-2" target="_blank">{{ move.name|title }}</a></li>
+                        <li class="list-inline-item"><a href="{{ move.url }}" class="btn btn-sm btn-outline-info mb-2" target="_blank">{{ move.name_pretty|title }}</a></li>
                     {% empty %}
                         <li>No moves could be found for this Pokémon.</li>
                     {% endfor %}
                 </ul>
-                <h4>Stats:</h4>
             </div>
         </div>
     </div>

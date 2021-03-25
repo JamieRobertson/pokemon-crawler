@@ -24,9 +24,17 @@ class Command(BaseCommand):
             default=False
         )
 
+        parser.add_argument(
+            '--no-limit',
+            action='store_true',
+            dest='no_limit',
+            default=False
+        )
+
     def handle(self, *args, **options):
         name = options.get('name', False)
         dry_run = options.get('dry_run', False)
+        no_limit = options.get('no_limit', False)
 
         if name is not False:
             fetch_pokemon_by_name(
@@ -34,7 +42,13 @@ class Command(BaseCommand):
                 save=not dry_run
             )
         else:
-            fetch_pokemon(
-                save=not dry_run
-            )
-
+            if no_limit is not False:
+                fetch_pokemon(
+                    limit_results=None,
+                    save=not dry_run
+                )
+            else:
+                # Fetching all Pokemon, might take some time 
+                fetch_pokemon(
+                    save=not dry_run
+                )
