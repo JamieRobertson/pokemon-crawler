@@ -70,7 +70,6 @@ def save_pokemon(data):
             except KeyError as exc:
                 # No official artwork :(
                 # TODO: handle other types of artworks
-                print(exc)
                 pass
             except IntegrityError as exc_2:
                 pass
@@ -94,7 +93,6 @@ def fetch_pokemon_by_name(name, save=True):
 
     if not r.ok:
         logger.error(f"Error fetching Pokémon <{name}>. Status code: <{r.status_code}>")
-        print(f"Error fetching Pokémon <{name}>. Status code: <{r.status_code}>")
         raise
 
     logger.debug(r.json())
