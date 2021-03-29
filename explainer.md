@@ -36,7 +36,7 @@ I would like to allow editing of names so that we dont rely on slugs that could 
 
 
 ### Pokémon external ID ? 
-Not sure what this is used for, but the each pokemon can be called using this ID, so let's store it.
+Not sure what this is used for, but each pokemon can be called using this ID, so let's store it.
 
 
 ### Future steps :
@@ -44,6 +44,7 @@ Not sure what this is used for, but the each pokemon can be called using this ID
 - The `description` field for our objects is intentionally blank, this could be filled 
 - Start prefetching related fields before 
 - Much of the content links back to the API. Do something with this
+- Cache results
 
 
 ### What I would have done differently:
